@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YEA | Ground-Effect Vehicle Innovation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-white: #ffffff;
+            --text-gray-1: #f5f5f7;
+            --text-gray-2: #a1a1a6;
+            --text-gray-3: #424245;
+            --border-color: #222222;
+            --apple-blue: #0071e3;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-gray-1);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 统一导航栏 */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 44px;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000; display: flex; justify-content: center; align-items: center;
+        }
+        .nav-content { width: 90%; max-width: 1024px; display: flex; justify-content: space-between; font-size: 12px; color: var(--text-gray-2); }
+
+        /* 主页面内容容器 */
+        #main-site { display: block; }
+        
+        /* 联系页面容器（初始隐藏） */
+        #contact-page { 
+            display: none; 
+            height: 100vh; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            background: #000;
+        }
+
+        section {
+            min-height: 100vh; padding: 120px 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-sizing: border-box; text-align: center;
+            border-bottom: 1px solid #111;
+        }
+        .container { max-width: 1000px; width: 100%; }
+
+        /* Typography */
+        .section-label { font-size: 14px; font-weight: 600; color: var(--text-gray-2); margin-bottom: 20px; letter-spacing: 0.1em; text-transform: uppercase; }
+        .hero-title { font-size: clamp(40px, 8vw, 84px); font-weight: 700; line-height: 1.05; letter-spacing: -0.015em; color: var(--text-white); margin-bottom: 0.3em; }
+        .sub-title { font-size: clamp(28px, 5vw, 48px); font-weight: 600; line-height: 1.1; margin-bottom: 30px; color: var(--text-gray-1); }
+        .description { font-size: 21px; font-weight: 400; line-height: 1.45; color: var(--text-gray-2); max-width: 750px; margin: 0 auto; }
+        .emphasize { color: var(--text-white); font-weight: 600; }
+
+        /* Media Container */
+        .media-box {
+            width: 100%; border-radius: 32px; background: #0a0a0a;
+            border: 1px solid var(--border-color); margin: 60px 0;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-gray-3); font-size: 14px; overflow: hidden;
+            min-height: 400px;
+        }
+
+        /* Grid System */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 60px; width: 100%; }
+        .member-card { background: #111; border-radius: 24px; padding: 40px 20px; text-align: center; }
+        
+        /* 修改后的 member-photo 样式 */
+        .member-photo { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%; 
+            background: #222; 
+            margin: 0 auto 24px; 
+            border: 1px solid #333;
+            overflow: hidden; 
+        }
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: left; margin-top: 60px; width: 100%; }
+        .feature-item { border-top: 1px solid #222; padding-top: 24px; }
+        .feature-item h5 { font-size: 20px; font-weight: 600; margin-bottom: 12px; color: var(--text-white); }
+        .feature-item p { font-size: 16px; color: var(--text-gray-2); }
+
+        .reveal { opacity: 0; transform: translateY(40px); }
+        
+        .blue-link { color: var(--apple-blue); text-decoration: none; font-size: 21px; font-weight: 500; cursor: pointer; }
+        .blue-link:hover { text-decoration: underline; }
+
+        /* Contact Details Styles */
+        .contact-item { font-size: clamp(18px, 4vw, 24px); margin: 15px 0; font-weight: 300; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <span style="font-weight: 600; color: white;">YEA</span>
+            <span id="nav-tag">Ground-Effect Vehicle Innovation</span>
+        </div>
+    </nav>
+
+    <div id="main-site">
+        <section>
+            <div class="container">
+                <h1 class="hero-title reveal">Above the surface. <br>Beyond the road.</h1>
+                <p class="description reveal" style="font-size: 28px; color: white; font-weight: 500; margin-bottom: 10px;">Starting at RMB 5,499</p>
+                <div class="media-box reveal">
+                    [PLACEHOLDER: Cinematic GEV Flight Video/Image]
+                </div>
+                <p class="description reveal">A payload-capable GEV designed for <span class="emphasize">mixed-surface environments</span> where infrastructure is unavailable.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">The Team</span>
+                <h2 class="sub-title reveal">Driven by <span style="color: var(--text-gray-3)">Future Mechanics.</span></h2>
+                <div class="team-grid">
+                    <div class="member-card reveal">
+                        <div class="member-photo">
+                            <img src="Yake.jpg" alt="Yake">
+                        </div>
+                        <h4>Yake</h4>
+                        <p>3D Modeling & Flight-Control Integration. Lead in experience designing and assembling FPV drones.</p>
+                    </div>
+                    <div class="member-card reveal">
+                        <div class="member-photo">
+                            <img src="Eric.jpg" alt="Eric">
+                        </div>
+                        <h4>Eric</h4>
+                        <p>Programming, Market Research & Outreach. Project management and operational support.</p>
+                    </div>
+                    <div class="member-card reveal">
+                        <div class="member-photo">
+                            <img src="Alex.jpg" alt="Alex">
+                        </div>
+                        <h4>Alex</h4>
+                        <p>Project Planning & Electronics Support. Professional in data collection and documentation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Opportunity</span>
+                <h2 class="sub-title reveal">The Transportation Gap.</h2>
+                <div class="media-box reveal" style="min-height: 300px;">
+                    [PLACEHOLDER: Infographic comparing GEV to Boats/Helicopters]
+                </div>
+                <p class="description reveal">Missions in shorelines and wetlands often fail due to slow motorboats or high-cost helicopters. <span class="emphasize">YEA fills this critical gap.</span></p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Innovation</span>
+                <h2 class="sub-title reveal">Aerodynamics Reimagined.</h2>
+                
+                <div class="media-box reveal">
+                    [PLACEHOLDER: Structural 3D Exploded View]
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item reveal">
+                        <h5>Closed-loop Stability</h5>
+                        <p>Advanced IMU and GPS integration for autonomous attitude Correction.</p>
+                    </div>
+                    <div class="feature-item reveal">
+                        <h5>Ventral Keel Fin</h5>
+                        <p>Proprietary design increasing yaw damping and water-surface stability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Validation</span>
+                <h2 class="sub-title reveal">Driven by Data.</h2>
+                <div class="feature-grid">
+                    <div class="feature-item reveal">
+                        <h5>Digital Validation</h5>
+                        <p>Utilizing CAD software for structural integrity and high-fidelity aerodynamic simulations to optimize lift-to-drag ratios.</p>
+                    </div>
+                    <div class="feature-item reveal">
+                        <h5>Operational Testing</h5>
+                        <p>Staged field trials ranging from surface taxiing to controlled ground-effect flight over varied terrains.</p>
+                    </div>
+                </div>
+                <div class="media-box reveal">
+                    [PLACEHOLDER: Performance Graphs & Simulation Data]
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Market</span>
+                <h2 class="sub-title reveal">Mission Ready.</h2>
+                <div class="media-box reveal">
+                    [PLACEHOLDER: Visuals of Coastal Research or Rescue Missions]
+                </div>
+                <p class="description reveal">Optimized for <span class="emphasize">Emergency Response</span>, coastal monitoring, and utility inspection in remote areas.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Competition</span>
+                <h2 class="sub-title reveal">Unrivaled Efficiency.</h2>
+                <div class="media-box reveal" style="min-height: 300px;">
+                    [PLACEHOLDER: Comparison Matrix vs traditional drones]
+                </div>
+                <p class="description reveal">Runway-free operation with higher payload-distance efficiency than any standard multi-rotor drone.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Go-to-Market</span>
+                <h2 class="sub-title reveal">Scaling Innovation.</h2>
+                <div class="media-box reveal">
+                    [PLACEHOLDER: Growth Roadmap Visual]
+                </div>
+                <p class="description reveal">Strategic partnerships with university labs and government emergency management agencies.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <span class="section-label reveal">Business Model</span>
+                <h2 class="sub-title reveal">Sustainable Growth.</h2>
+                <div class="feature-grid">
+                    <div class="feature-item reveal">
+                        <h5>Revenue Streams</h5>
+                        <p>Direct vehicle sales, pilot deployment programs, and recurring technical service fees.</p>
+                    </div>
+                    <div class="feature-item reveal">
+                        <h5>Production Efficiency</h5>
+                        <p>Scalable build cost of RMB 5,000 using precision manufacturing and off-the-shelf integration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);">
+            <div class="container">
+                <span class="section-label reveal">Our Vision</span>
+                <h2 class="hero-title reveal" style="font-size: clamp(40px, 6vw, 64px);">Support Our Mission.</h2>
+                <div class="media-box reveal" style="min-height: 350px;">
+                    [PLACEHOLDER: High-impact vision render]
+                </div>
+                <p class="reveal" style="font-size: 18px; color: var(--text-gray-3); margin-top: 40px;">
+                    TOTAL STARTUP REQUIREMENT: <span style="color: var(--text-white); font-weight: 600;">RMB 50,000</span>
+                </p>
+                <div class="reveal" style="margin-top: 60px;">
+                    <span class="blue-link" onclick="showContact()">Contact Team YEA ></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="contact-page">
+        <div class="contact-item">Yk18108162992@163.com</div>
+        <div class="contact-item">ar1kk1226@gmail.com</div>
+        <div class="contact-item">19983174572@163.com</div>
+        <div style="margin-top: 50px;">
+            <span class="blue-link" style="font-size: 16px;" onclick="hideContact()"> < Back to Project</span>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 页面切换逻辑
+        function showContact() {
+            document.getElementById('main-site').style.display = 'none';
+            document.getElementById('contact-page').style.display = 'flex';
+            document.getElementById('nav-tag').innerText = 'Contact Us';
+            window.scrollTo(0,0);
+        }
+
+        function hideContact() {
+            document.getElementById('main-site').style.display = 'block';
+            document.getElementById('contact-page').style.display = 'none';
+            document.getElementById('nav-tag').innerText = 'Ground-Effect Vehicle Innovation';
+            // 重新初始化动画，防止切换回来后失效
+            ScrollTrigger.refresh();
+        }
+
+        // 初始化所有 reveal 动画
+        function initAnimations() {
+            gsap.utils.toArray(".reveal").forEach((el) => {
+                gsap.to(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 90%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            });
+        }
+
+        initAnimations();
+    </script>
+</body>
+</html>
